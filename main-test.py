@@ -12,7 +12,9 @@ if __name__ == '__main__':
   testing_data  = np.load('test_mlp_data.npy')
   testing_label = np.load('test_mlp_label.npy')
 
-  tn, tp, fn, fp = test_model(testing_data, testing_label, num_hidden)
+  tn, tp, fp, fn = test_model(testing_data, testing_label, num_hidden)
+  assert tn + fp == np.sum(testing_label == 0)
+  assert tp + fn == np.sum(testing_label == 1)
 
   eps = 1e-12
 
